@@ -1,4 +1,4 @@
-{% set version = "3.1" %}
+{% set version = "3.2.1" %}
 
 package:
   name: graphene
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/graphene/graphene-{{ version }}.tar.gz
-  sha256: 73332510a14b94fcb925dae4563ad6a028d414144704fdcc191565af72608798
+  sha256: 722243a9da2caeab703b1af9ec0deec602589c97035f86c486106a52d0c67082
 
 build:
   noarch: python
@@ -15,12 +15,13 @@ build:
 
 requirements:
   host:
-    - pip
     - python >=3.6
+    - pip
+    - wheel
   run:
     - python >=3.6
-    - graphql-core >=3.1.2,<3.2
-    - graphql-relay >=3,<4
+    - graphql-core >=3.1,<3.3
+    - graphql-relay >=3.1,<3.3
     - aniso8601 >=8,<10
 
 test:
@@ -54,9 +55,12 @@ about:
   license_file: LICENSE
   license: MIT
   license_family: MIT
+  license_url: https://github.com/graphql-python/graphene/blob/master/LICENSE
   summary: GraphQL Framework for Python
+  description: "Graphene is an opinionated Python library for building GraphQL schemas/types fast and easily."
   dev_url: https://github.com/graphql-python/graphene
   doc_url: https://docs.graphene-python.org
+  doc_source_url: https://github.com/graphql-python/graphene/tree/master/docs
 
 extra:
   recipe-maintainers:
