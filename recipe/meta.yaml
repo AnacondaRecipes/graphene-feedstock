@@ -48,7 +48,7 @@ test:
   commands:
     - pip check
     - python fix_tests.py
-    - cd graphene/tests && pytest -vv --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=50
+    - cd graphene/tests && pytest -vv --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=48
 
 about:
   home: https://graphene-python.org
@@ -63,6 +63,15 @@ about:
   doc_source_url: https://github.com/graphql-python/graphene/tree/master/docs
 
 extra:
+  skip-lints:
+    - avoid_noarch
+    
+  anaconda-services:
+    ref:  https://anaconda.zendesk.com/agent/tickets/26940
+    reason: "needed for building vaex-server=>fastapi=>starlette"
+    recipe-maintainers:
+      - bkreider
+
   recipe-maintainers:
     - bollwyvl
     - carlodri
