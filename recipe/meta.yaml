@@ -53,6 +53,8 @@ about:
   license: MIT
   license_family: MIT
   summary: GraphQL Framework for Python
+  description: |
+    Graphene is an opinionated Python library for building GraphQL schemas/types fast and easily.
   dev_url: https://github.com/graphql-python/graphene
   doc_url: https://docs.graphene-python.org
 
