@@ -38,8 +38,10 @@ test:
     - pytest-cov >=3,<4
     - pytest-mock >=3,<4
     - pytz ==2022.1
-    - snapshottest >=0.6,<1
-    - coveralls >=3.3,<4
+    # Commenting out snapshottest because it does not exist on defaults.
+    # - snapshottest >=0.6,<1
+    # Commenting out coveralls because currently the latest we have on defaults is v3.2.0.
+    # - coveralls >=3.3,<4
   imports:
     - graphene
   commands:
