@@ -26,15 +26,12 @@ requirements:
 test:
   source_files:
     - graphene/tests
-  files:
-    - fix_tests.py
   requires:
     # for pip check
     - pip
     # for tests
     - iso8601 >=1,<2
     - mock >=4,<5
-    - promise >=2.3,<3
     - pytest >=6,<7
     - pytest-asyncio >=0.16,<2
     - pytest-benchmark >=3.4,<4
@@ -42,6 +39,7 @@ test:
     - pytest-mock >=3,<4
     - pytz ==2022.1
     - snapshottest >=0.6,<1
+    - coveralls >=3.3,<4
   imports:
     - graphene
   commands:
