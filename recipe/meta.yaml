@@ -36,11 +36,12 @@ test:
     - pytest-benchmark >=3.4,<4
     - pytest-cov >=3,<4
     - pytest-mock >=3,<4
+    - pytz
   imports:
     - graphene
   commands:
     - pip check
-    - cd graphene/tests && pytest -vv --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=50
+    - pytest --pyargs tests -vv --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=50
 
 about:
   home: https://graphene-python.org
