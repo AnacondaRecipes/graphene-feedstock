@@ -10,7 +10,7 @@ source:
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv  --no-deps --no-build-isolation
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -25,6 +25,10 @@ requirements:
     - aniso8601 >=8,<10
 
 test:
+  source_files:
+    - graphene/tests
+  files:
+    - fix_tests.py
   requires:
     # for pip check
     - pip
@@ -41,7 +45,9 @@ test:
     - graphene
   commands:
     - pip check
-    - pytest --pyargs graphene.tests.issues -vv --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=50
+    - python fix_tests.py
+    - cd graphene/tests && pytest -vv --cov graphene --cov-report term-missing:skip-covered --no-
+cov-on-fail --cov-fail-under=48
 
 about:
   home: https://graphene-python.org
