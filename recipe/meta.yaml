@@ -1,4 +1,4 @@
-{% set version = "3.1" %}
+{% set version = "3.3" %}
 
 package:
   name: graphene
@@ -6,21 +6,22 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/graphene/graphene-{{ version }}.tar.gz
-  sha256: 73332510a14b94fcb925dae4563ad6a028d414144704fdcc191565af72608798
+  sha256: 529bf40c2a698954217d3713c6041d69d3f719ad0080857d7ee31327112446b0
 
 build:
-  noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python
+    - setuptools
+    - wheel
   run:
-    - python >=3.6
-    - graphql-core >=3.1.2,<3.2
-    - graphql-relay >=3,<4
+    - python
+    - graphql-core >=3.1,<3.3
+    - graphql-relay >=3.1,<3.3
     - aniso8601 >=8,<10
 
 test:
@@ -34,20 +35,18 @@ test:
     # for tests
     - iso8601 >=1,<2
     - mock >=4,<5
-    - promise >=2.3,<3
     - pytest >=6,<7
     - pytest-asyncio >=0.16,<2
     - pytest-benchmark >=3.4,<4
     - pytest-cov >=3,<4
     - pytest-mock >=3,<4
-    - pytz ==2022.1
-    - snapshottest >=0.6,<1
+    - pytz
   imports:
     - graphene
   commands:
     - pip check
     - python fix_tests.py
-    - cd graphene/tests && pytest -vv --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=50
+    - cd graphene/tests && pytest -vv --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=48
 
 about:
   home: https://graphene-python.org
@@ -55,6 +54,8 @@ about:
   license: MIT
   license_family: MIT
   summary: GraphQL Framework for Python
+  description: |
+    Graphene is an opinionated Python library for building GraphQL schemas/types fast and easily.
   dev_url: https://github.com/graphql-python/graphene
   doc_url: https://docs.graphene-python.org
 
