@@ -1,11 +1,12 @@
+{% set name = "graphene" %}
 {% set version = "3.4.3" %}
 
 package:
-  name: graphene
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/g/graphene/graphene-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 2a3786948ce75fe7e078443d37f609cbe5bb36ad8d6b828740ad3b95ed1a0aaa
 
 build:
@@ -36,6 +37,7 @@ test:
     # for tests
     - iso8601 >=1,<2
     - mock >=4,<5
+    # locking to lower test dependencies while we don't satisfy all pytest versions
     - pytest >=6,<8
     - pytest-asyncio >=0.16,<2
     - pytest-benchmark >=3.4,<5
