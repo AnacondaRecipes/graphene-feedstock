@@ -10,7 +10,7 @@ source:
   sha256: 2a3786948ce75fe7e078443d37f609cbe5bb36ad8d6b828740ad3b95ed1a0aaa
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
@@ -40,7 +40,7 @@ test:
     # locking to lower test dependencies while we don't satisfy all pytest versions
     - pytest >=6,<8
     - pytest-asyncio >=0.16,<2
-    - pytest-benchmark >=3.4,<5
+    - pytest-benchmark >=3.4,<5  # [py<314]
     - pytest-cov >=3,<5
     - pytest-mock >=3,<4
     - pytz
@@ -49,7 +49,8 @@ test:
   commands:
     - pip check
     - python fix_tests.py
-    - cd graphene/tests && pytest -vv --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=48
+    - cd graphene/tests && pytest -v --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=48  # [py<314]
+    - cd graphene/tests && pytest -v -p no:benchmark --cov graphene --cov-report term-missing:skip-covered --no-cov-on-fail --cov-fail-under=48  # [py==314]
 
 about:
   home: https://graphene-python.org
